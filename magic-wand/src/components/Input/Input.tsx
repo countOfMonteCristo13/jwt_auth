@@ -5,6 +5,7 @@ type InputProps = {
   placeholder: string;
   onAction?: () => void;
   required?: boolean;
+  readonly?: boolean;
 };
 
 const Input: React.FC<InputProps> = ({
@@ -12,9 +13,16 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   onAction,
   required = false,
+  readonly = false,
 }) => {
   return (
-    <StyledInput type={type} placeholder={placeholder} onChange={onAction} />
+    <StyledInput
+      type={type}
+      placeholder={placeholder}
+      onChange={onAction}
+      required={required}
+      readOnly={readonly}
+    />
   );
 };
 

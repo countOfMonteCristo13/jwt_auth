@@ -1,15 +1,16 @@
 import "./App.css";
-import Button from "./components/Button/Button";
-import Input from "./components/Input/Input";
+import CreateWand from "./containers/CreateWand/CreateWand";
+import Login from "./containers/Login/Login";
+import WandDetails from "./containers/WandDetails/WandDetails";
+import { StyledMain } from "./styles/Layout";
 
 function App() {
   return (
-    <>
-      <Button title="Log in" />
-      <Button title="Continue as Guest" type="secondary" />
-      <Input placeholder="Username" />
-      <Input type="password" placeholder="Password" />
-    </>
+    <StyledMain>
+      {/* <WandDetails /> */}
+      {/* <Login /> */}
+      <CreateWand />
+    </StyledMain>
   );
 }
 
