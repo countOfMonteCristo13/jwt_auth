@@ -21,11 +21,10 @@ const Button: React.FC<ButtonProps> = ({
 
 const StyledButton = styled.button<{ type?: "primary" | "secondary" }>`
   color: #ffffff;
-  font-weight: bold;
   background-color: ${(props) =>
     props.type === "primary" ? "var(--primary-color)" : "transparent"};
   border: ${(props) =>
-    props.type === "secondary" && "3px solid var(--primary-color)"};
+    props.type === "secondary" && "2px solid var(--primary-color)"};
   border-radius: 5px;
   padding: 0.4rem 0.8rem;
   width: 100%;
@@ -34,7 +33,7 @@ const StyledButton = styled.button<{ type?: "primary" | "secondary" }>`
 
   &:hover {
     background-color: ${(props) =>
-      props.type === "primary" && "var(--darkprimary-color)"};
+      props.type === "primary" && "var(--primary-darkcolor)"};
 
     color: ${(props) => props.type === "secondary" && "var(--primary-color)"};
   }

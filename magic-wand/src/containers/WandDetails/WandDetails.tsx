@@ -3,7 +3,7 @@ import {
   CenteredSection,
   ContainerWrapper,
   InputsContainer,
-} from "../../styles/Layout";
+} from "../../styles/FormLayouts";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 

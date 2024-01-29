@@ -5,7 +5,7 @@ import {
   CenteredSection,
   ContainerWrapper,
   InputsContainer,
-} from "../../styles/Layout";
+} from "../../styles/FormLayouts";
 
 const CreateWand = () => {
   return (

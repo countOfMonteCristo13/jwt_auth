@@ -7,12 +7,11 @@
   );
 
   --primary-color: #00a3ff;
-  --darkprimary-color: #0091e3;
+  --primary-darkcolor: #0091e3;
+  --table-darkcolor: #141e30;
+  --table-lightcolor: #243a54;
+  font-family: "Roboto", sans-serif;
 }
-
-/* gornja boja #141e30
-    donja boja #243a54
-*/
 
 * {
   box-sizing: border-box;
