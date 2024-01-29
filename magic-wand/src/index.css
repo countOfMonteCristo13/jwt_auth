@@ -1,3 +1,30 @@
 :root {
   font-weight: 400;
+  background: linear-gradient(
+    0deg,
+    rgba(36, 58, 84, 1) 0%,
+    rgba(20, 30, 48, 1) 100%
+  );
+
+  --primary-color: #00a3ff;
+  --darkprimary-color: #0091e3;
+}
+
+/* gornja boja #141e30
+    donja boja #243a54
+*/
+
+body {
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  border-style: none;
 }
