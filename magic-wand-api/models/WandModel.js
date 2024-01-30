@@ -11,7 +11,7 @@ const WandSchema = new Schema({
     required: true,
   },
   owner: {
-    type: UserModel.Schema,
+    type: UserModel.schema,
     required: true,
   },
   length: {
