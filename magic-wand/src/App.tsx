@@ -1,11 +1,9 @@
 import "./App.css";
-import TableContainerHeading from "./components/TableContainerHeading/TableContainerHeading";
-import WandsTable from "./components/WandsTable/WandsTable";
+import WandsList from "./containers/WandsList/WandsList";
 // import CreateWand from "./containers/CreateWand/CreateWand";
 // import Login from "./containers/Login/Login";
 // import WandDetails from "./containers/WandDetails/WandDetails";
 import { StyledMain } from "./styles/GlobalLayouts";
-import { TableContainer } from "./styles/TableLayouts";
 
 function App() {
   return (
@@ -13,10 +11,7 @@ function App() {
       {/* <WandDetails /> */}
       {/* <Login /> */}
       {/* <CreateWand /> */}
-      <TableContainer>
-        <TableContainerHeading />
-        <WandsTable />
-      </TableContainer>
+      <WandsList authenticated={true} />
     </StyledMain>
   );
 }

@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 type WandRowProps = {
-  flexibility: string;
+  flexibility?: string;
   owner: string;
-  length: number;
+  length?: number;
   wood: string;
-  inspect: () => void;
-  disabled?: boolean;
+  inspect?: () => void;
+  authenticated?: boolean;
 };
 
 const WandRow: React.FC<WandRowProps> = ({
@@ -15,30 +15,39 @@ const WandRow: React.FC<WandRowProps> = ({
   length,
   wood,
   inspect,
-  disabled = false,
+  authenticated = true,
 }) => {
   return (
-    <StyledWandRow disabled={disabled}>
-      <td>{flexibility}</td>
-      <td>{owner}</td>
-      <td>{length}</td>
-      <td>{wood}</td>
-      <td>
-        <p onClick={!disabled ? inspect : undefined}>View Details</p>
-      </td>
+    <StyledWandRow>
+      {authenticated ? (
+        <>
+          <td>{flexibility}</td>
+          <td>{owner}</td>
+          <td>{length}</td>
+          <td>{wood}</td>
+          <td>
+            <p onClick={inspect}>View Details</p>
+          </td>
+        </>
+      ) : (
+        <>
+          <td>{owner}</td>
+          <td>{wood}</td>
+        </>
+      )}
     </StyledWandRow>
   );
 };
 
-const StyledWandRow = styled.tr<{ disabled: boolean }>`
+const StyledWandRow = styled.tr`
   td:last-child p {
-    color: ${(props) => (!props.disabled ? "var(--primary-color)" : "gray")};
-    cursor: ${(props) => (!props.disabled ? "pointer" : "auto")};
+    color: var(--primary-color);
+    cursor: pointer;
     width: fit-content;
   }
 
   td:last-child p:hover {
-    color: ${(props) => !props.disabled && "var(--primary-darkcolor)"};
+    color: var(--primary-darkcolor);
   }
 `;
 
