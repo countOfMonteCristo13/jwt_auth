@@ -24,13 +24,10 @@ exports.addWand = async (req, res) => {
     await wand.save();
     res.status(201).json({ message: "Wand created", ...wand });
   } catch (error) {
-    if (error instanceof mongoose.Error.ValidationError) {
-      return res
-        .status(400)
-        .json({ message: "Validation error", error: error.message });
-    }
-
-    if (error.code === 11000) {
+    if (
+      error instanceof mongoose.Error.ValidationError ||
+      error.code === 11000
+    ) {
       return res
         .status(400)
         .json({ message: "Validation error", error: error.message });
@@ -41,7 +38,17 @@ exports.addWand = async (req, res) => {
 };
 
 exports.getWands = async (req, res) => {
-  res.send(["wand1", "wand2", "wand3"]);
+  try {
+    const wands = await WandModel.find();
+
+    if (!wands || wands.length === 0) {
+      return res.status(404).json({ message: "No wands found" });
+    }
+
+    res.status(200).json(wands);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
 };
 
 exports.getWand = async (req, res) => {
