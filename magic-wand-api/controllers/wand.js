@@ -53,5 +53,17 @@ exports.getWands = async (req, res) => {
 
 exports.getWand = async (req, res) => {
   const { id } = req.params;
-  res.send(id);
+
+  try {
+    const wand = await WandModel.findById(id);
+
+    if (!wand) {
+      return res
+        .status(404)
+        .json({ message: `There is not a wand with id of: ${id}` });
+    }
+    res.status(200).json(wand);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
 };
