@@ -4,7 +4,7 @@ import styled from "styled-components";
 type ButtonProps = {
   title: string;
   type?: "primary" | "secondary";
-  onAction?: () => void;
+  onAction?: (...args: any[]) => void;
 };
 
 const Button: React.FC<ButtonProps> = ({
