@@ -28,7 +28,10 @@ exports.addWand = async (req, res) => {
     ) {
       return res
         .status(400)
-        .json({ message: "Validation error", error: error.message });
+        .json({
+          message: "Validation error",
+          error: `${owner} is not a valid user`,
+        });
     }
 
     res.status(500).json({ message: "Server error", error: error.message });
