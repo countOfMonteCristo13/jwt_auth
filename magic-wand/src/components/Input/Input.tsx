@@ -7,7 +7,7 @@ type InputProps = {
   required?: boolean;
   readonly?: boolean;
   register?: any;
-  errors?: any;
+  inputErrors?: any;
 };
 
 const Input: React.FC<InputProps> = ({
@@ -17,7 +17,7 @@ const Input: React.FC<InputProps> = ({
   required = false,
   readonly = false,
   register,
-  errors,
+  inputErrors,
 }) => {
   const fieldName = placeholder.toLowerCase();
 
@@ -31,8 +31,8 @@ const Input: React.FC<InputProps> = ({
         readOnly={readonly}
         {...register(fieldName)}
       />
-      {errors[fieldName] && (
-        <StyledError>{errors[fieldName]?.message}</StyledError>
+      {inputErrors[fieldName] && (
+        <StyledError>{inputErrors[fieldName]?.message}</StyledError>
       )}
     </StyledInputWrapper>
   );

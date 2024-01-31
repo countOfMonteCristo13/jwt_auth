@@ -11,6 +11,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { woodEnum } from "../../types/woodEnum";
 import Wand from "../../types/wand";
+import axios from "../../api/axios";
 
 const schema = yup
   .object({
@@ -25,13 +26,23 @@ const CreateWand = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<Wand>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<Wand> = (wand: Wand) => {
+  const onSubmit: SubmitHandler<Wand> = async (wand: Wand) => {
     console.log(wand);
+    try {
+      const response = await axios.post("/api/wands/add-wand", wand);
+      console.log(response);
+    } catch (error: any) {
+      setError("owner", {
+        type: "manual",
+        message: error.response.data.error,
+      });
+    }
   };
 
   return (
@@ -41,11 +52,15 @@ const CreateWand = () => {
           <Input
             placeholder="Flexibility"
             register={register}
-            errors={errors}
+            inputErrors={errors}
           />
-          <Input placeholder="Owner" register={register} errors={errors} />
-          <Input placeholder="Length" register={register} errors={errors} />
-          <Input placeholder="Wood" register={register} errors={errors} />
+          <Input placeholder="Owner" register={register} inputErrors={errors} />
+          <Input
+            placeholder="Length"
+            register={register}
+            inputErrors={errors}
+          />
+          <Input placeholder="Wood" register={register} inputErrors={errors} />
         </InputsContainer>
         <ButtonsContainer>
           <Button title="Create Wand" onAction={handleSubmit(onSubmit)} />
