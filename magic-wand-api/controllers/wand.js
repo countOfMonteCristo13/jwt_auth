@@ -8,8 +8,6 @@ exports.hello = (req, res) => {
 exports.addWand = async (req, res) => {
   const { flexibility, owner, length, wood } = req.body;
 
-  console.log(owner._id);
-
   const wand = new WandModel({
     flexibility,
     owner,
@@ -39,7 +37,7 @@ exports.addWand = async (req, res) => {
 
 exports.getWands = async (req, res) => {
   try {
-    const wands = await WandModel.find();
+    const wands = await WandModel.find().populate("owner");
 
     if (!wands || wands.length === 0) {
       return res.status(404).json({ message: "No wands found" });
@@ -55,7 +53,7 @@ exports.getWand = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const wand = await WandModel.findById(id);
+    const wand = await WandModel.findById(id).populate("owner").exec();
 
     if (!wand) {
       return res
