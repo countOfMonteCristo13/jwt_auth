@@ -1,7 +1,25 @@
 import { StyledTable, TableHeader } from "../../styles/TableLayouts";
+import Wand from "../../types/wand";
 import WandRow from "../WandRow/WandRow";
 
-const AuthWandsTable = () => {
+type AuthWandsTableProps = {
+  wands: Wand[];
+  isLoading: boolean;
+  error: any;
+};
+
+const AuthWandsTable: React.FC<AuthWandsTableProps> = ({
+  wands,
+  isLoading,
+  error,
+}) => {
+  if (error) {
+    return <h2>{error.message}</h2>;
+  }
+  if (isLoading) {
+    return <h2>Loading...</h2>;
+  }
+
   return (
     <StyledTable>
       <thead>
@@ -14,50 +32,16 @@ const AuthWandsTable = () => {
         </TableHeader>
       </thead>
       <tbody>
-        <WandRow
-          flexibility="Unyeilding"
-          owner="Olivander"
-          length={9}
-          wood="Alder"
-          inspect={() => {}}
-        />
-        <WandRow
-          flexibility="Flexible"
-          owner="Jimmy Kiddel"
-          length={14}
-          wood="Acacia"
-          inspect={() => {}}
-        />
-        <WandRow
-          flexibility="Unyeilding"
-          owner="Olivander"
-          length={9}
-          wood="Alder"
-          inspect={() => {}}
-        />
-        <WandRow
-          flexibility="Flexible"
-          owner="Jimmy Kiddel"
-          length={14}
-          wood="Acacia"
-          inspect={() => {}}
-        />
-        <WandRow
-          flexibility="Unyeilding"
-          owner="Olivander"
-          length={9}
-          wood="Alder"
-          inspect={() => {}}
-        />
-        <WandRow
-          flexibility="Flexible"
-          owner="Jimmy Kiddel"
-          length={14}
-          wood="Acacia"
-          inspect={() => {
-            console.log("cao");
-          }}
-        />
+        {wands.map((wand) => (
+          <WandRow
+            key={wand._id}
+            owner={wand.owner.username}
+            wood={wand.wood}
+            length={wand.length}
+            flexibility={wand.flexibility}
+            inspect={() => {}}
+          />
+        ))}
       </tbody>
     </StyledTable>
   );

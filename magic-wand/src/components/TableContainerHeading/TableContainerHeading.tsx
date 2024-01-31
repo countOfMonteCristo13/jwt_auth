@@ -15,7 +15,7 @@ const TableContainerHeading: React.FC<TableContainerHeadingProps> = ({
   singOut,
 }) => {
   return (
-    <StyledHeading authenticated={authenticated}>
+    <StyledHeading authenticated={authenticated.toString()}>
       {authenticated ? (
         <>
           <Button title="Create New Wand" onAction={createNewWand} />
@@ -28,10 +28,10 @@ const TableContainerHeading: React.FC<TableContainerHeadingProps> = ({
   );
 };
 
-const StyledHeading = styled.div<{ authenticated: boolean }>`
+const StyledHeading = styled.div<{ authenticated: string }>`
   display: flex;
   justify-content: ${(props) =>
-    props.authenticated ? "space-between" : "flex-end"};
+    props.authenticated === "true" ? "space-between" : "flex-end"};
   width: 100%;
 
   button {
