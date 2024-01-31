@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import AuthWandsTable from "../../components/AuthWandsTable/AuthWandsTable";
 import TableContainerHeading from "../../components/TableContainerHeading/TableContainerHeading";
 import WandsTable from "../../components/WandsTable/WandsTable";
@@ -10,12 +11,15 @@ type WandsListProps = {
 
 const WandsList: React.FC<WandsListProps> = ({ authenticated = false }) => {
   const { wands, isLoading, error } = useWands();
-
-  console.log(wands);
+  const navigate = useNavigate();
+  // console.log(wands);
 
   return (
     <TableContainer>
-      <TableContainerHeading authenticated={authenticated} />
+      <TableContainerHeading
+        authenticated={authenticated}
+        createNewWand={() => navigate("/add-wand")}
+      />
       {authenticated ? (
         <AuthWandsTable wands={wands} error={error} isLoading={isLoading} />
       ) : (

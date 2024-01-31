@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { StyledTable, TableHeader } from "../../styles/TableLayouts";
 import Wand from "../../types/wand";
 import WandRow from "../WandRow/WandRow";
@@ -13,6 +14,8 @@ const AuthWandsTable: React.FC<AuthWandsTableProps> = ({
   isLoading,
   error,
 }) => {
+  const navigate = useNavigate();
+
   if (error) {
     return <h2>{error.message}</h2>;
   }
@@ -39,7 +42,7 @@ const AuthWandsTable: React.FC<AuthWandsTableProps> = ({
             wood={wand.wood}
             length={wand.length}
             flexibility={wand.flexibility}
-            inspect={() => {}}
+            inspect={() => navigate(`/${wand._id}`)}
           />
         ))}
       </tbody>

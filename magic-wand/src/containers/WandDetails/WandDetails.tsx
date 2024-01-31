@@ -4,16 +4,15 @@ import {
   ContainerWrapper,
   InputsContainer,
 } from "../../styles/FormLayouts";
-import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import useWand from "../../hooks/useWand";
+import WandDetail from "../../components/WandDetail/WandDetail";
+import { useNavigate, useParams } from "react-router-dom";
 
-type WandDetailsProps = {
-  id: string;
-};
-
-const WandDetails: React.FC<WandDetailsProps> = ({ id }) => {
+const WandDetails = () => {
+  const { id } = useParams();
   const { wand, isLoading, error } = useWand({ id });
+  const navigate = useNavigate();
 
   if (error) {
     return <h2>{error.message}</h2>;
@@ -26,13 +25,17 @@ const WandDetails: React.FC<WandDetailsProps> = ({ id }) => {
     <CenteredSection>
       <ContainerWrapper>
         <InputsContainer>
-          <Input placeholder={wand.flexibility} readonly={true} />
-          <Input placeholder={wand.owner.username} readonly={true} />
-          <Input placeholder={wand.length.toString()} readonly={true} />
-          <Input placeholder={wand.wood} readonly={true} />
+          <WandDetail title={wand.flexibility} />
+          <WandDetail title={wand.owner.username} />
+          <WandDetail title={wand.length.toString()} />
+          <WandDetail title={wand.wood} />
         </InputsContainer>
         <ButtonsContainer>
-          <Button title="Back" type="secondary" />
+          <Button
+            title="Back"
+            type="secondary"
+            onAction={() => navigate("/")}
+          />
         </ButtonsContainer>
       </ContainerWrapper>
     </CenteredSection>

@@ -4,7 +4,7 @@ import axios from "../api/axios";
 import Wand from "../types/wand";
 
 interface useWandProps {
-  id: string;
+  id: any;
 }
 
 const useWand = (props: useWandProps) => {
@@ -17,10 +17,12 @@ const useWand = (props: useWandProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<any>(false);
 
+  const { id } = props;
+
   const fetchWand = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`/api/wands/get-wands/${props.id}`);
+      const response = await axios.get(`/api/wands/get-wands/${id}`);
       if (response.status !== 200) {
         throw new Error(`Request failed with status ${response.status}`);
       }

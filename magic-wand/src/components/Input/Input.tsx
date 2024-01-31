@@ -5,7 +5,6 @@ type InputProps = {
   placeholder: string;
   onAction?: () => void;
   required?: boolean;
-  readonly?: boolean;
   register?: any;
   inputErrors?: any;
 };
@@ -15,7 +14,6 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   onAction,
   required = false,
-  readonly = false,
   register,
   inputErrors,
 }) => {
@@ -28,7 +26,6 @@ const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         onChange={onAction}
         required={required}
-        readOnly={readonly}
         {...register(fieldName)}
       />
       {inputErrors[fieldName] && (

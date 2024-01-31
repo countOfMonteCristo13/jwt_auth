@@ -12,6 +12,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { woodEnum } from "../../types/woodEnum";
 import Wand from "../../types/wand";
 import axios from "../../api/axios";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup
   .object({
@@ -23,6 +24,7 @@ const schema = yup
   .required();
 
 const CreateWand = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -33,10 +35,12 @@ const CreateWand = () => {
   });
 
   const onSubmit: SubmitHandler<Wand> = async (wand: Wand) => {
-    console.log(wand);
+    const tempString = wand.owner;
+    wand.owner = { _id: tempString };
     try {
       const response = await axios.post("/api/wands/add-wand", wand);
       console.log(response);
+      navigate("/");
     } catch (error: any) {
       setError("owner", {
         type: "manual",
@@ -64,7 +68,11 @@ const CreateWand = () => {
         </InputsContainer>
         <ButtonsContainer>
           <Button title="Create Wand" onAction={handleSubmit(onSubmit)} />
-          <Button title="Back" type="secondary" />
+          <Button
+            title="Back"
+            type="secondary"
+            onAction={() => navigate("/")}
+          />
         </ButtonsContainer>
       </ContainerWrapper>
     </CenteredSection>
