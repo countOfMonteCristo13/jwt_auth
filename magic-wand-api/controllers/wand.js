@@ -7,7 +7,6 @@ exports.hello = (req, res) => {
 
 exports.addWand = async (req, res) => {
   const { flexibility, owner, length, wood } = req.body;
-
   const wand = new WandModel({
     flexibility,
     owner,
@@ -19,6 +18,7 @@ exports.addWand = async (req, res) => {
     if (!flexibility || !owner || !length || !wood) {
       return res.status(400).json("All field are required!");
     }
+
     await wand.save();
     res.status(201).json({ message: "Wand created", ...wand });
   } catch (error) {
@@ -26,12 +26,10 @@ exports.addWand = async (req, res) => {
       error instanceof mongoose.Error.ValidationError ||
       error.code === 11000
     ) {
-      return res
-        .status(400)
-        .json({
-          message: "Validation error",
-          error: `${owner} is not a valid user`,
-        });
+      return res.status(400).json({
+        message: "Validation error",
+        error: `${owner} is not a valid user`,
+      });
     }
 
     res.status(500).json({ message: "Server error", error: error.message });
