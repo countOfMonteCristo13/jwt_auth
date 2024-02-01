@@ -1,3 +1,11 @@
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import AuthContext from '../../context/AuthProvider';
+import { wandSchema } from '../../schemas/schemas';
+import axios from '../../api/axios';
+import Wand from '../../types/wand';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import {
@@ -6,24 +14,6 @@ import {
   ContainerWrapper,
   InputsContainer,
 } from '../../styles/FormLayouts';
-import * as yup from 'yup';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { woodEnum } from '../../types/woodEnum';
-import Wand from '../../types/wand';
-import axios from '../../api/axios';
-import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import AuthContext from '../../context/AuthProvider';
-
-const schema = yup
-  .object({
-    flexibility: yup.string().required('Flexibility is required'),
-    length: yup.number().positive().required('Length is required'),
-    owner: yup.string().required('Owner is required'),
-    wood: yup.string().oneOf(woodEnum).required('Wood is required'),
-  })
-  .required();
 
 const CreateWand = () => {
   const navigate = useNavigate();
@@ -34,7 +24,7 @@ const CreateWand = () => {
     setError,
     formState: { errors },
   } = useForm<Wand>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(wandSchema),
   });
 
   const onSubmit: SubmitHandler<Wand> = async (wand: Wand) => {
