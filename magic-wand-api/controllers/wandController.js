@@ -2,17 +2,15 @@ const WandModel = require("../models/WandModel");
 const UserModel = require("../models/UserModel");
 const mongoose = require("mongoose");
 
-exports.hello = (req, res) => {
-  res.send("hello!");
-};
-
 exports.addWand = async (req, res) => {
   const { flexibility, owner, length, wood } = req.body;
-  const username = owner._id;
-  const user = await UserModel.findOne({ username });
+
+  const username = owner._id; //setting username to name that has been put in input field for username
+  const user = await UserModel.findOne({ username }); //finding user with username: username
+
   const wand = new WandModel({
     flexibility,
-    owner: user._id,
+    owner: user._id, // setting ObjectId from user object to owner
     length,
     wood,
   });

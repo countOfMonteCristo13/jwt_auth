@@ -30,6 +30,7 @@ exports.getUser = async (req, res) => {
         .status(400)
         .json({ message: `There is no user with id: ${id}` });
     }
+
     res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });

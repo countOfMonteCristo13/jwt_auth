@@ -10,19 +10,12 @@ exports.handleLogin = async (req, res) => {
     password: password,
   });
   if (!user) {
-    return res.status(400).json({ message: "User not found" });
+    return res.status(400).json({ message: "Incorrect username or password" });
   }
 
   const accessToken = jwt.sign({ username }, process.env.ACCESS_TOKEN_SECRET, {
     expiresIn: "10m",
   });
-  const refreshToken = jwt.sign(
-    { username },
-    process.env.REFRESH_TOKEN_SECRET,
-    {
-      expiresIn: "1d",
-    }
-  );
 
   res.status(200).json({ accessToken: accessToken });
 };
