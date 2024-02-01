@@ -34,7 +34,7 @@ const WandDetails = () => {
           <Button
             title="Back"
             type="secondary"
-            onAction={() => navigate("/")}
+            onAction={() => navigate("/auth/wands")}
           />
         </ButtonsContainer>
       </ContainerWrapper>
