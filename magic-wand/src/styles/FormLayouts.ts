@@ -23,3 +23,7 @@ const FormContainer = styled.div`
 export const InputsContainer = styled(FormContainer)``;
 
 export const ButtonsContainer = styled(FormContainer)``;
+
+export const StyledFormError = styled.p`
+  color: red;
+`;

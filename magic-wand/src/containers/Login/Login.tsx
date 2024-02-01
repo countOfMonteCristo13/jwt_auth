@@ -13,6 +13,7 @@ import {
   CenteredSection,
   ContainerWrapper,
   InputsContainer,
+  StyledFormError,
 } from '../../styles/FormLayouts';
 
 const LOGIN_URL = '/api/auth';
@@ -63,7 +64,7 @@ const Login = () => {
             inputErrors={errors}
           />
         </InputsContainer>
-        {authError && <p>{authError}</p>}
+        {authError && <StyledFormError>{authError}</StyledFormError>}
         <ButtonsContainer>
           <Button title="Log in" onAction={handleSubmit(onSubmit)} />
           <Button
