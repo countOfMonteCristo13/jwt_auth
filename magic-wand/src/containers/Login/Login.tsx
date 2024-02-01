@@ -49,7 +49,6 @@ const Login = () => {
         password: user.password,
         accessToken,
       });
-      console.log("navigating to wands!");
       navigate("/auth/wands");
     } catch (error: any) {
       console.log(error);

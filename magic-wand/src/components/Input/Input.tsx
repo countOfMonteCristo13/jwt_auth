@@ -7,6 +7,8 @@ type InputProps = {
   required?: boolean;
   register?: any;
   inputErrors?: any;
+  value?: string;
+  readOnly?: boolean;
 };
 
 const Input: React.FC<InputProps> = ({
@@ -16,6 +18,8 @@ const Input: React.FC<InputProps> = ({
   required = false,
   register,
   inputErrors,
+  value,
+  readOnly = false,
 }) => {
   const fieldName = placeholder.toLowerCase();
 
@@ -26,6 +30,8 @@ const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         onChange={onAction}
         required={required}
+        readOnly={readOnly}
+        value={value}
         {...register(fieldName)}
       />
       {inputErrors[fieldName] && (
@@ -49,7 +55,6 @@ const StyledInput = styled.input`
 
 const StyledError = styled.p`
   color: red;
-  /* font-size: 1.3rem; */
 `;
 
 export default Input;

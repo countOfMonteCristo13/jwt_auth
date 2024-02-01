@@ -13,6 +13,8 @@ import { woodEnum } from "../../types/woodEnum";
 import Wand from "../../types/wand";
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../../context/AuthProvider";
 
 const schema = yup
   .object({
@@ -25,6 +27,8 @@ const schema = yup
 
 const CreateWand = () => {
   const navigate = useNavigate();
+  const { auth } = useContext(AuthContext);
+  console.log(auth);
   const {
     register,
     handleSubmit,
@@ -42,6 +46,7 @@ const CreateWand = () => {
       console.log(response);
       navigate("/auth/wands");
     } catch (error: any) {
+      console.log(error);
       setError("owner", {
         type: "manual",
         message: error.response.data.error,
@@ -58,7 +63,13 @@ const CreateWand = () => {
             register={register}
             inputErrors={errors}
           />
-          <Input placeholder="Owner" register={register} inputErrors={errors} />
+          <Input
+            placeholder="Owner"
+            register={register}
+            inputErrors={errors}
+            value={auth?.username}
+            readOnly={true}
+          />
           <Input
             placeholder="Length"
             register={register}
