@@ -1,4 +1,9 @@
-const { hello, getWands, getWand, addWand } = require("../controllers/wand");
+const {
+  hello,
+  getWands,
+  getWand,
+  addWand,
+} = require("../controllers/wandController");
 
 const router = require("express").Router();
 
