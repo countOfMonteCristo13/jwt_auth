@@ -31,13 +31,13 @@ Two available user accounts are:
 
 ### User1
 
--Username: Nikola
--Password: test123
+- Username: Nikola
+- Password: test123
 
 ### User2
 
--Username: username
--Password: password
+- Username: username
+- Password: password
 
 ## Routes
 
