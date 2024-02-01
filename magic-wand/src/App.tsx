@@ -5,12 +5,9 @@ import CreateWand from "./containers/CreateWand/CreateWand";
 import Login from "./containers/Login/Login";
 import WandDetails from "./containers/WandDetails/WandDetails";
 import { StyledMain } from "./styles/GlobalLayouts";
-import { useContext } from "react";
-import AuthContext from "./context/AuthProvider";
 import RequireAuth from "./routes/RequireAuth";
 
 function App() {
-  const { auth } = useContext(AuthContext);
   return (
     <StyledMain>
       <Routes>
