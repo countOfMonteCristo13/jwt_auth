@@ -5,24 +5,24 @@ type TableContainerHeadingProps = {
   authenticated?: boolean;
   createNewWand?: () => void;
   logIn?: () => void;
-  singOut?: () => void;
+  logOut?: () => void;
 };
 
 const TableContainerHeading: React.FC<TableContainerHeadingProps> = ({
   authenticated = false,
   createNewWand,
   logIn,
-  singOut,
+  logOut,
 }) => {
   return (
     <StyledHeading authenticated={authenticated.toString()}>
       {authenticated ? (
         <>
           <Button title="Create New Wand" onAction={createNewWand} />
-          <Button title="Log Out" type="secondary" onAction={logIn} />
+          <Button title="Log Out" type="secondary" onAction={logOut} />
         </>
       ) : (
-        <Button title="Log In" onAction={singOut} />
+        <Button title="Log In" onAction={logIn} />
       )}
     </StyledHeading>
   );
