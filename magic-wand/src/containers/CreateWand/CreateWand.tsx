@@ -40,7 +40,7 @@ const CreateWand = () => {
     try {
       const response = await axios.post("/api/wands/add-wand", wand);
       console.log(response);
-      navigate("/");
+      navigate("/auth/wands");
     } catch (error: any) {
       setError("owner", {
         type: "manual",
@@ -71,7 +71,7 @@ const CreateWand = () => {
           <Button
             title="Back"
             type="secondary"
-            onAction={() => navigate("/")}
+            onAction={() => navigate("/auth/wands")}
           />
         </ButtonsContainer>
       </ContainerWrapper>
