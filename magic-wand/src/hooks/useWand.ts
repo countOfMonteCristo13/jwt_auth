@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
-import axios from "../api/axios";
-import Wand from "../types/wand";
+import { useEffect, useState } from 'react';
+import axios from '../api/axios';
+import Wand from '../types/wand';
 
 interface useWandProps {
   id: any;
@@ -9,10 +9,10 @@ interface useWandProps {
 
 const useWand = (props: useWandProps) => {
   const [wand, setWand] = useState<Wand>({
-    flexibility: "",
-    owner: { username: "" },
+    flexibility: '',
+    owner: { username: '' },
     length: 0,
-    wood: "",
+    wood: '',
   });
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<any>(false);

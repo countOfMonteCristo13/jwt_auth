@@ -3,11 +3,11 @@ import {
   CenteredSection,
   ContainerWrapper,
   InputsContainer,
-} from "../../styles/FormLayouts";
-import Button from "../../components/Button/Button";
-import useWand from "../../hooks/useWand";
-import WandDetail from "../../components/WandDetail/WandDetail";
-import { useNavigate, useParams } from "react-router-dom";
+} from '../../styles/FormLayouts';
+import Button from '../../components/Button/Button';
+import useWand from '../../hooks/useWand';
+import WandDetail from '../../components/WandDetail/WandDetail';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const WandDetails = () => {
   const { id } = useParams();
@@ -34,7 +34,7 @@ const WandDetails = () => {
           <Button
             title="Back"
             type="secondary"
-            onAction={() => navigate("/auth/wands")}
+            onAction={() => navigate('/auth/wands')}
           />
         </ButtonsContainer>
       </ContainerWrapper>

@@ -1,8 +1,8 @@
 export const woodEnum = [
-  "Alder",
-  "Acacia",
-  "Apple",
-  "Ash",
-  "Blackthorn",
-  "Cherry",
+  'Alder',
+  'Acacia',
+  'Apple',
+  'Ash',
+  'Blackthorn',
+  'Cherry',
 ];

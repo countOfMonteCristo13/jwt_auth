@@ -1,27 +1,27 @@
-import Button from "../../components/Button/Button";
-import Input from "../../components/Input/Input";
+import Button from '../../components/Button/Button';
+import Input from '../../components/Input/Input';
 import {
   ButtonsContainer,
   CenteredSection,
   ContainerWrapper,
   InputsContainer,
-} from "../../styles/FormLayouts";
-import * as yup from "yup";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { woodEnum } from "../../types/woodEnum";
-import Wand from "../../types/wand";
-import axios from "../../api/axios";
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import AuthContext from "../../context/AuthProvider";
+} from '../../styles/FormLayouts';
+import * as yup from 'yup';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { woodEnum } from '../../types/woodEnum';
+import Wand from '../../types/wand';
+import axios from '../../api/axios';
+import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import AuthContext from '../../context/AuthProvider';
 
 const schema = yup
   .object({
-    flexibility: yup.string().required("Flexibility is required"),
-    length: yup.number().positive().required("Length is required"),
-    owner: yup.string().required("Owner is required"),
-    wood: yup.string().oneOf(woodEnum).required("Wood is required"),
+    flexibility: yup.string().required('Flexibility is required'),
+    length: yup.number().positive().required('Length is required'),
+    owner: yup.string().required('Owner is required'),
+    wood: yup.string().oneOf(woodEnum).required('Wood is required'),
   })
   .required();
 
@@ -41,11 +41,11 @@ const CreateWand = () => {
     const tempString = wand.owner;
     wand.owner = { _id: tempString };
     try {
-      await axios.post("/api/wands/add-wand", wand);
-      navigate("/auth/wands");
+      await axios.post('/api/wands/add-wand', wand);
+      navigate('/auth/wands');
     } catch (error: any) {
-      setError("owner", {
-        type: "manual",
+      setError('owner', {
+        type: 'manual',
         message: error.response.data.error,
       });
     }
@@ -79,7 +79,7 @@ const CreateWand = () => {
           <Button
             title="Back"
             type="secondary"
-            onAction={() => navigate("/auth/wands")}
+            onAction={() => navigate('/auth/wands')}
           />
         </ButtonsContainer>
       </ContainerWrapper>

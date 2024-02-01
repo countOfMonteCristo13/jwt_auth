@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import { StyledTable, TableHeader } from "../../styles/TableLayouts";
-import Wand from "../../types/wand";
-import WandRow from "../WandRow/WandRow";
+import { useNavigate } from 'react-router-dom';
+import { StyledTable, TableHeader } from '../../styles/TableLayouts';
+import Wand from '../../types/wand';
+import WandRow from '../WandRow/WandRow';
 
 type AuthWandsTableProps = {
   wands: Wand[];
@@ -35,7 +35,7 @@ const AuthWandsTable: React.FC<AuthWandsTableProps> = ({
         </TableHeader>
       </thead>
       <tbody>
-        {wands.map((wand) => (
+        {wands.map(wand => (
           <WandRow
             key={wand._id}
             owner={wand.owner.username}

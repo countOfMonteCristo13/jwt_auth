@@ -1,6 +1,6 @@
-import WandRow from "../WandRow/WandRow";
-import { StyledTable, TableHeader } from "../../styles/TableLayouts";
-import Wand from "../../types/wand";
+import WandRow from '../WandRow/WandRow';
+import { StyledTable, TableHeader } from '../../styles/TableLayouts';
+import Wand from '../../types/wand';
 
 type WandsTableProps = {
   authenticated?: boolean;
@@ -31,7 +31,7 @@ const WandsTable: React.FC<WandsTableProps> = ({
         </TableHeader>
       </thead>
       <tbody>
-        {wands.map((wand) => (
+        {wands.map(wand => (
           <WandRow
             key={wand._id}
             owner={wand.owner.username}

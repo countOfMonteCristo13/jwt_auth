@@ -1,11 +1,10 @@
-import { Route, Routes, Navigate } from "react-router-dom";
-import "./App.css";
-import WandsList from "./containers/WandsList/WandsList";
-import CreateWand from "./containers/CreateWand/CreateWand";
-import Login from "./containers/Login/Login";
-import WandDetails from "./containers/WandDetails/WandDetails";
-import { StyledMain } from "./styles/GlobalLayouts";
-import RequireAuth from "./routes/RequireAuth";
+import { Route, Routes, Navigate } from 'react-router-dom';
+import WandsList from './containers/WandsList/WandsList';
+import CreateWand from './containers/CreateWand/CreateWand';
+import Login from './containers/Login/Login';
+import WandDetails from './containers/WandDetails/WandDetails';
+import { StyledMain } from './styles/GlobalLayouts';
+import RequireAuth from './routes/RequireAuth';
 
 function App() {
   return (

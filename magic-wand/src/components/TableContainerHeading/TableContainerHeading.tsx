@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Button from "../Button/Button";
+import styled from 'styled-components';
+import Button from '../Button/Button';
 
 type TableContainerHeadingProps = {
   authenticated?: boolean;
@@ -30,8 +30,8 @@ const TableContainerHeading: React.FC<TableContainerHeadingProps> = ({
 
 const StyledHeading = styled.div<{ authenticated: string }>`
   display: flex;
-  justify-content: ${(props) =>
-    props.authenticated === "true" ? "space-between" : "flex-end"};
+  justify-content: ${props =>
+    props.authenticated === 'true' ? 'space-between' : 'flex-end'};
   width: 100%;
 
   button {

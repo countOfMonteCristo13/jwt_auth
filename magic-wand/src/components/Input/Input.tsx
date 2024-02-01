@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 type InputProps = {
   type?: string;
@@ -12,7 +12,7 @@ type InputProps = {
 };
 
 const Input: React.FC<InputProps> = ({
-  type = "text",
+  type = 'text',
   placeholder,
   onAction,
   required = false,
