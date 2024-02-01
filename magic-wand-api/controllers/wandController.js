@@ -1,4 +1,5 @@
-const WandModel = require("../models/wandModel");
+const WandModel = require("../models/WandModel");
+const UserModel = require("../models/UserModel");
 const mongoose = require("mongoose");
 
 exports.hello = (req, res) => {
@@ -7,9 +8,11 @@ exports.hello = (req, res) => {
 
 exports.addWand = async (req, res) => {
   const { flexibility, owner, length, wood } = req.body;
+  const username = owner._id;
+  const user = await UserModel.findOne({ username });
   const wand = new WandModel({
     flexibility,
-    owner,
+    owner: user._id,
     length,
     wood,
   });
