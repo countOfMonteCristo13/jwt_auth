@@ -42,7 +42,7 @@ const AuthWandsTable: React.FC<AuthWandsTableProps> = ({
             wood={wand.wood}
             length={wand.length}
             flexibility={wand.flexibility}
-            inspect={() => navigate(`/${wand._id}`)}
+            inspect={() => navigate(`/auth/wands/${wand._id}`)}
           />
         ))}
       </tbody>
