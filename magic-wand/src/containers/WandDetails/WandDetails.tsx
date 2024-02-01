@@ -1,13 +1,13 @@
+import { useNavigate, useParams } from 'react-router-dom';
+import useWand from '../../hooks/useWand';
+import Button from '../../components/Button/Button';
+import WandDetail from '../../components/WandDetail/WandDetail';
 import {
   ButtonsContainer,
   CenteredSection,
   ContainerWrapper,
   InputsContainer,
 } from '../../styles/FormLayouts';
-import Button from '../../components/Button/Button';
-import useWand from '../../hooks/useWand';
-import WandDetail from '../../components/WandDetail/WandDetail';
-import { useNavigate, useParams } from 'react-router-dom';
 
 const WandDetails = () => {
   const { id } = useParams();

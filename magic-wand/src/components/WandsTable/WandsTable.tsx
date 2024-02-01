@@ -1,6 +1,6 @@
 import WandRow from '../WandRow/WandRow';
-import { StyledTable, TableHeader } from '../../styles/TableLayouts';
 import Wand from '../../types/wand';
+import { StyledTable, TableHeader } from '../../styles/TableLayouts';
 
 type WandsTableProps = {
   authenticated?: boolean;

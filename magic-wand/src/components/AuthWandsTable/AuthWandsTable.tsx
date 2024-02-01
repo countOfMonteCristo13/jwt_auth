@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { StyledTable, TableHeader } from '../../styles/TableLayouts';
-import Wand from '../../types/wand';
 import WandRow from '../WandRow/WandRow';
+import Wand from '../../types/wand';
+import { StyledTable, TableHeader } from '../../styles/TableLayouts';
 
 type AuthWandsTableProps = {
   wands: Wand[];
