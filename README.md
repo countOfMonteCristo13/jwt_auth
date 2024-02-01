@@ -23,6 +23,7 @@ Before running the application, make sure you have [git](https://git-scm.com/) a
 - Navigate to the magic-wand directory: cd magic-wand
 - Install the necessary dependencies: npm install
 - Start the server: npm run dev
+- Make sure your port is:5173
 
 ## Testing
 
