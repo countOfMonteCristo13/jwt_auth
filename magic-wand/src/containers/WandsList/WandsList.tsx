@@ -25,7 +25,7 @@ const WandsList: React.FC<WandsListProps> = ({ authenticated = false }) => {
     <TableContainer>
       <TableContainerHeading
         authenticated={authenticated}
-        createNewWand={() => navigate("/add-wand")}
+        createNewWand={() => navigate("/auth/add-wand")}
         logIn={() => navigate("/login")}
         logOut={handleLogOut}
       />

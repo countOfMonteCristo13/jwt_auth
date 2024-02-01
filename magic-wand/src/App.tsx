@@ -17,7 +17,7 @@ function App() {
 
         <Route element={<RequireAuth />}>
           <Route path="/auth/wands/:id" element={<WandDetails />} />
-          <Route path="/add-wand" element={<CreateWand />} />
+          <Route path="/auth/add-wand" element={<CreateWand />} />
           <Route
             path="/auth/wands"
             element={<WandsList authenticated={true} />}
