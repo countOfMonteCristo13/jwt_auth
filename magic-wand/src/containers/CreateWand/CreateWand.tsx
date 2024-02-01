@@ -28,7 +28,6 @@ const schema = yup
 const CreateWand = () => {
   const navigate = useNavigate();
   const { auth } = useContext(AuthContext);
-  console.log(auth);
   const {
     register,
     handleSubmit,
@@ -42,11 +41,9 @@ const CreateWand = () => {
     const tempString = wand.owner;
     wand.owner = { _id: tempString };
     try {
-      const response = await axios.post("/api/wands/add-wand", wand);
-      console.log(response);
+      await axios.post("/api/wands/add-wand", wand);
       navigate("/auth/wands");
     } catch (error: any) {
-      console.log(error);
       setError("owner", {
         type: "manual",
         message: error.response.data.error,

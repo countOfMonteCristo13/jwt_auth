@@ -42,7 +42,6 @@ const Login = () => {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
-      console.log(response.data);
       const accessToken = response?.data?.accessToken;
       setAuth({
         username: user.username,
@@ -51,7 +50,6 @@ const Login = () => {
       });
       navigate("/auth/wands");
     } catch (error: any) {
-      console.log(error);
       setAuthError(error?.response.data.message);
     }
   };

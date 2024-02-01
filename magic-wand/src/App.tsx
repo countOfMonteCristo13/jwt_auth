@@ -11,7 +11,6 @@ import RequireAuth from "./routes/RequireAuth";
 
 function App() {
   const { auth } = useContext(AuthContext);
-  console.log(auth);
   return (
     <StyledMain>
       <Routes>
