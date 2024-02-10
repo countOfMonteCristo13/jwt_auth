@@ -5,6 +5,10 @@ const mongoose = require("mongoose");
 exports.addWand = async (req, res) => {
   const { flexibility, owner, length, wood } = req.body;
 
+  if (!flexibility || !owner || !length || !wood) {
+    return res.status(400).json("All field are required!");
+  }
+
   const username = owner._id; //setting username to name that has been put in input field for username
   const user = await UserModel.findOne({ username }); //finding user with username: username
 
@@ -16,10 +20,6 @@ exports.addWand = async (req, res) => {
   });
 
   try {
-    if (!flexibility || !owner || !length || !wood) {
-      return res.status(400).json("All field are required!");
-    }
-
     await wand.save();
     res.status(201).json({ message: "Wand created", ...wand });
   } catch (error) {
@@ -41,7 +41,7 @@ exports.getWands = async (req, res) => {
   try {
     const wands = await WandModel.find().populate("owner");
 
-    if (!wands || wands.length === 0) {
+    if (!wands) {
       return res.status(404).json({ message: "No wands found" });
     }
 
