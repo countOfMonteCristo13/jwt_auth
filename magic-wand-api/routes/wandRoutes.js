@@ -2,8 +2,8 @@ const { getWands, getWand, addWand } = require("../controllers/wandController");
 
 const router = require("express").Router();
 
-router.post("/add-wand", addWand);
-router.get("/get-wands", getWands);
-router.get("/get-wands/:id", getWand);
+router.post("/", addWand);
+router.get("/", getWands);
+router.get("/:id", getWand);
 
 module.exports = router;
