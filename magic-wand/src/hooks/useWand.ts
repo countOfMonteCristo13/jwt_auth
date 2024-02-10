@@ -22,7 +22,7 @@ const useWand = (props: useWandProps) => {
   const fetchWand = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`/api/wands/get-wands/${id}`);
+      const response = await axios.get(`/api/wands/${id}`);
       if (response.status !== 200) {
         throw new Error(`Request failed with status ${response.status}`);
       }

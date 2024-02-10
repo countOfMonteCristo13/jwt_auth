@@ -10,7 +10,7 @@ const useWands = () => {
   const fetchWands = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get('/api/wands/get-wands');
+      const response = await axios.get('/api/wands');
       if (response.status !== 200) {
         throw new Error(`Request failed with status ${response.status}`);
       }
