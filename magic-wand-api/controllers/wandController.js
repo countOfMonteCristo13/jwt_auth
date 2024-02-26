@@ -1,6 +1,6 @@
-const WandModel = require("../models/WandModel");
-const UserModel = require("../models/UserModel");
 const mongoose = require("mongoose");
+
+const WandService = require("../services/wandService");
 
 exports.addWand = async (req, res) => {
   const { flexibility, owner, length, wood } = req.body;
@@ -9,18 +9,8 @@ exports.addWand = async (req, res) => {
     return res.status(400).json("All field are required!");
   }
 
-  const username = owner._id; //setting username to name that has been put in input field for username
-  const user = await UserModel.findOne({ username }); //finding user with username: username
-
-  const wand = new WandModel({
-    flexibility,
-    owner: user._id, // setting ObjectId from user object to owner
-    length,
-    wood,
-  });
-
   try {
-    await wand.save();
+    const wand = await WandService.addWand(owner, flexibility, length, wood);
     res.status(201).json({ message: "Wand created", ...wand });
   } catch (error) {
     if (
@@ -39,7 +29,7 @@ exports.addWand = async (req, res) => {
 
 exports.getWands = async (req, res) => {
   try {
-    const wands = await WandModel.find().populate("owner");
+    const wands = await WandService.getWands();
 
     if (!wands) {
       return res.status(404).json({ message: "No wands found" });
@@ -53,9 +43,8 @@ exports.getWands = async (req, res) => {
 
 exports.getWand = async (req, res) => {
   const { id } = req.params;
-
   try {
-    const wand = await WandModel.findById(id).populate("owner").exec();
+    const wand = await WandService.getWand(id);
 
     if (!wand) {
       return res
@@ -66,4 +55,8 @@ exports.getWand = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }
+};
+
+exports.protected = async (req, res) => {
+  res.json({ message: "Ovo je zaštićeni resurs", user: req.user });
 };
