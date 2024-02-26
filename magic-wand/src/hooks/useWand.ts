@@ -1,13 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from '../api/axios';
 import Wand from '../types/wand';
+import AuthContext from '../context/AuthProvider';
+import { AxiosError } from 'axios';
 
 interface useWandProps {
-  id: any;
+  id: string | undefined;
 }
 
 const useWand = (props: useWandProps) => {
+  const { auth } = useContext(AuthContext) || {};
   const [wand, setWand] = useState<Wand>({
     flexibility: '',
     owner: { username: '' },
@@ -15,14 +18,18 @@ const useWand = (props: useWandProps) => {
     wood: '',
   });
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<any>(false);
+  const [error, setError] = useState<AxiosError>();
 
   const { id } = props;
 
   const fetchWand = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`/api/wands/${id}`);
+      const response = await axios.get(`/api/wands/${id}`, {
+        headers: {
+          Authorization: `Bearer ${auth?.accessToken}`,
+        },
+      });
       if (response.status !== 200) {
         throw new Error(`Request failed with status ${response.status}`);
       }
@@ -30,7 +37,9 @@ const useWand = (props: useWandProps) => {
       setWand(response.data);
       setIsLoading(false);
     } catch (error) {
-      setError(error);
+      if (error instanceof AxiosError) {
+        setError(error);
+      }
     }
   };
 
