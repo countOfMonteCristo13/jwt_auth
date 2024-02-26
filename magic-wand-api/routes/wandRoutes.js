@@ -1,9 +1,16 @@
-const { getWands, getWand, addWand } = require("../controllers/wandController");
+const {
+  getWands,
+  getWand,
+  addWand,
+  protected,
+} = require("../controllers/wandController");
+const { authenticateToken } = require("../middlewares/authMiddleware");
 
 const router = require("express").Router();
 
-router.post("/", addWand);
+router.post("/", authenticateToken, addWand);
 router.get("/", getWands);
-router.get("/:id", getWand);
+router.get("/protected", authenticateToken, protected);
+router.get("/:id", authenticateToken, getWand);
 
 module.exports = router;
