@@ -2,11 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import WandRow from '../WandRow/WandRow';
 import Wand from '../../types/wand';
 import { StyledTable, TableHeader } from '../../styles/TableLayouts';
+import { AxiosError } from 'axios';
 
 type AuthWandsTableProps = {
   wands: Wand[];
   isLoading: boolean;
-  error: any;
+  error: AxiosError | undefined;
 };
 
 const AuthWandsTable: React.FC<AuthWandsTableProps> = ({
