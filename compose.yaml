@@ -1,0 +1,67 @@
+#verzija docker compose-a
+version: "3.8"
+
+#svi servisi koji ce nam trebati
+services:
+  # prvo cemo da deklarisemo frontend service
+  web:
+    #naglasavmo od cega nam zavisi nas frontend, a to je backend i njega cemo nazvati api
+    depends_on:
+      - api
+
+    #naglasavamo build context za nas frontend - zadajemo path gde se nalazi Dockerfile za frontend
+    build: ./magic-wand
+
+    #naglasavamo portove koji treba da se exposuju za frontend
+    #prvi port je vezan za host masinu a drugi broj je vezan za container
+    ports:
+      - 5173:5173
+
+    #naglasavamo env varijable koje imam
+    #environment:
+
+    #sada kreiramo deo za docker compose watch
+    #sve sto se nalazi pod develop: ce biti posmatrano ,zbog promena u fajlovima, od strane docker compose watch-a
+    # i zatim ce biti sprovedene akcije na osnovu specifikacije
+    develop:
+      #pod watch naglasavamo sve sto zelimo da posmatramo
+      watch:
+        #ukoliko se dese promene u package.json ili package-lock.json zelim da se container rebuilduje
+        - path: ./magic-wand/package.json
+          action: rebuild
+        - path: ./magic-wand/package-lock.json
+          action: rebuild
+          #ukoliko se dese promene na bilo kom fajlu u frontend delu aplikacije zelim da se promene sinhronizuju sa fajlovima
+          #koji se nalaze u containeru a ti fajlovi se nalaze u direktorijumu app koji je specificiran u target:
+        - path: ./magic-wand
+          target: /app
+          action: sync
+
+  #deklarisemo service za backend
+  api:
+    #naglasavamo da nam backend zavisi od baze podataka!
+    depends_on:
+      - db
+    #naglasavamo buildovanje backenda i path je direktorijum gde se njegov Dockerfile nalazi
+    build: ./magic-wand-api
+    #naglasavamo portove koji su potrebni da se exposuju za backend
+    ports:
+      - 3001:3001
+
+    #naglasavamo env varijable koje imam
+    #environment:
+
+    #ponavljamo kao i frontendu samo menjamo path da bude backend
+    develop:
+      watch:
+        - path: ./magic-wand-api/package.json
+          action: rebuild
+        - path: ./magic-wand-api/package-lock.json
+          action: rebuild
+        - path: ./magic-wand-api
+          target: /app
+          action: sync
+
+  #deklarisemo service za bazu podataka i posto koristimo mongoDB Atlas ovo je dovoljna deklaracija
+  db:
+    image: mongo:latest
