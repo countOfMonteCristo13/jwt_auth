@@ -19,7 +19,7 @@ import {
 const LOGIN_URL = '/api/auth';
 
 const Login = () => {
-  const { setAuth } = useContext(AuthContext);
+  const { setAuth } = useContext(AuthContext) || { setAuth: () => {} };
   const [authError, setAuthError] = useState('');
   const navigate = useNavigate();
   const {

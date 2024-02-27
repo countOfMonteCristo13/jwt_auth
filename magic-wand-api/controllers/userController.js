@@ -1,19 +1,15 @@
-const UserModel = require("../models/UserModel");
+const UserService = require("../services/userService");
 
 exports.addUser = async (req, res) => {
   const { username, password } = req.body;
 
-  const user = new UserModel({
-    username,
-    password,
-  });
+  if (!username || !password) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
 
   try {
-    if (!username || !password) {
-      return res.status(400).json({ message: "All fields are required" });
-    }
-    await user.save();
-    res.status(201).json({ message: "User created" });
+    const user = await UserService.addUser(username, password);
+    res.status(201).json({ message: "User created", user });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
@@ -23,7 +19,7 @@ exports.getUser = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const user = await UserModel.findById(id);
+    const user = await UserService.getUserById(id);
 
     if (!user) {
       return res

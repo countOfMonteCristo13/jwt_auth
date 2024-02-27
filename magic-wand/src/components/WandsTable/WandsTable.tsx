@@ -1,12 +1,13 @@
 import WandRow from '../WandRow/WandRow';
 import Wand from '../../types/wand';
 import { StyledTable, TableHeader } from '../../styles/TableLayouts';
+import { AxiosError } from 'axios';
 
 type WandsTableProps = {
   authenticated?: boolean;
   wands: Wand[];
   isLoading: boolean;
-  error: any;
+  error: AxiosError | undefined;
 };
 
 const WandsTable: React.FC<WandsTableProps> = ({

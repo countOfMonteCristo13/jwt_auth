@@ -1,12 +1,13 @@
 import { createContext, ReactNode, useState } from 'react';
+import { Auth, InitialAuthState } from '../types/auth';
 
 interface AuthContextProps {
-  auth: any;
-  setAuth: React.Dispatch<React.SetStateAction<any>>;
+  auth: Auth;
+  setAuth: React.Dispatch<React.SetStateAction<Auth>>;
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>({
-  auth: {},
+  auth: InitialAuthState,
   setAuth: () => {},
 });
 
@@ -15,7 +16,7 @@ type AuthProviderProps = {
 };
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [auth, setAuth] = useState<any>({});
+  const [auth, setAuth] = useState<Auth>(InitialAuthState);
 
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>

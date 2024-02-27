@@ -6,18 +6,19 @@ import AuthWandsTable from '../../components/AuthWandsTable/AuthWandsTable';
 import TableContainerHeading from '../../components/TableContainerHeading/TableContainerHeading';
 import WandsTable from '../../components/WandsTable/WandsTable';
 import { TableContainer } from '../../styles/TableLayouts';
+import { InitialAuthState } from '../../types/auth';
 
 type WandsListProps = {
   authenticated?: boolean;
 };
 
 const WandsList: React.FC<WandsListProps> = ({ authenticated = false }) => {
-  const { setAuth } = useContext(AuthContext);
+  const { setAuth } = useContext(AuthContext) || { setAuth: () => {} };
   const { wands, isLoading, error } = useWands();
   const navigate = useNavigate();
 
   const handleLogOut = () => {
-    setAuth({});
+    setAuth(InitialAuthState);
     navigate('/');
   };
 
