@@ -8,15 +8,21 @@ Before running the application, make sure you have [git](https://git-scm.com/) a
 
 - Clone the repository: git clone <REPOSITORY_URL>
 
-### Server Side
+## Two options of running app
+
+### Running with Docker
+
+    - Make sure you have Docker installed
+    - Navigate to the project directory
+    - Enter command docker compose up
+
+### Separately running Server Side and Client Side
 
 #### Starting Server Side
 
 - Navigate to the magic-wand-api directory: cd magic-wand-api
 - Install the necessary dependencies: npm install
 - Start the server: npm start
-
-### Client Side
 
 #### Starting Client Side
 
