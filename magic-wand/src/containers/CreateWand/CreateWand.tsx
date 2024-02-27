@@ -17,7 +17,7 @@ import {
 
 const CreateWand = () => {
   const navigate = useNavigate();
-  const { auth } = useContext(AuthContext);
+  const { auth } = useContext(AuthContext) || {};
   const {
     register,
     handleSubmit,
@@ -31,7 +31,11 @@ const CreateWand = () => {
     const tempString = wand.owner;
     wand.owner = { _id: tempString };
     try {
-      await axios.post('/api/wands/add-wand', wand);
+      await axios.post('/api/wands', wand, {
+        headers: {
+          Authorization: `Bearer ${auth?.accessToken}`,
+        },
+      });
       navigate('/auth/wands');
     } catch (error: any) {
       setError('owner', {
