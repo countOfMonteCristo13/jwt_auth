@@ -12,9 +12,9 @@ Before running the application, make sure you have [git](https://git-scm.com/) a
 
 ### Running with Docker
 
-    - Make sure you have Docker installed
-    - Navigate to the project directory
-    - Enter command docker compose up
+- Make sure you have Docker installed
+- Navigate to the project directory
+- Enter command docker compose up
 
 ### Separately running Server Side and Client Side
 
