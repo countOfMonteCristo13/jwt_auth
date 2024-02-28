@@ -19,7 +19,7 @@ export const authenticateToken = async (req: UserRequest, res: express.Response,
 
   try {
     const user: JwtPayload | string = jwt.verify(token, SECRET_KEY);
-    console.log("user verif: ", user);
+    console.log("user verifikacija: ", user);
     req.user = user;
     next();
   } catch (error) {

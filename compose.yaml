@@ -58,7 +58,7 @@ services:
           action: rebuild
         - path: ./magic-wand-api/package-lock.json
           action: rebuild
-        - path: ./magic-wand-api/src
+        - path: ./magic-wand-api
           target: /app
           action: sync
 
