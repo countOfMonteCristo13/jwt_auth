@@ -1,11 +1,15 @@
 import express  from 'express';
 import dotenv from 'dotenv'
-import jwt from 'jsonwebtoken'
+import jwt, { JwtPayload } from 'jsonwebtoken'
 const SECRET_KEY = process.env.ACCESS_TOKEN_SECRET;
 dotenv.config();
 
-export const authenticateToken = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
-  const authHeader = req.headers["authorization"];
+export interface UserRequest extends Request{
+  user: string | JwtPayload
+}
+
+export const authenticateToken = async (req: UserRequest, res: express.Response, next: express.NextFunction) => {
+  const authHeader = req.headers.get("authorization");
   // console.log(req.headers);
   const token = authHeader && authHeader.split(" ")[1];
 
@@ -14,9 +18,9 @@ export const authenticateToken = async (req: express.Request, res: express.Respo
   }
 
   try {
-    const user = jwt.verify(token, SECRET_KEY);
-    console.log("user verifikacija: ", user);
-    // req.user = user;
+    const user: JwtPayload | string = jwt.verify(token, SECRET_KEY);
+    console.log("user verif: ", user);
+    req.user = user;
     next();
   } catch (error) {
     return res.status(403).json({ message: "Nevalidan token", error: error });

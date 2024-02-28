@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose';
 import WandService from '../services/wandService';
+import { UserRequest } from 'middlewares/authMiddleware';
 
 
 export const addWand = async (req: express.Request, res: express.Response) => {
@@ -58,6 +59,6 @@ export const getWand = async (req: express.Request, res: express.Response) => {
   }
 };
 
-export const protecteds = async (req: express.Request, res: express.Response) => {
-  res.json({ message: "Ovo je zaštićeni resurs", user: req.body });
+export const protecteds = async (req: UserRequest, res: express.Response) => {
+  res.json({ message: "Ovo je zaštićeni resurs", user: req.user });
 };
