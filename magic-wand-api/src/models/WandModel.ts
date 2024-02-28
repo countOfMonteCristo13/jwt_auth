@@ -1,5 +1,4 @@
-const { Schema, model } = require("mongoose");
-const mongoose = require("mongoose");
+import mongoose, {Schema, model} from "mongoose";
 
 const WoodEnum = ["Alder", "Acacia", "Apple", "Ash", "Blackthorn", "Cherry"];
 
@@ -33,4 +32,4 @@ const WandSchema = new Schema(
 
 const WandModel = model("Wand", WandSchema);
 
-module.exports = WandModel;
+export default WandModel

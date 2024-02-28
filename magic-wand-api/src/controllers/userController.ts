@@ -1,6 +1,7 @@
-const UserService = require("../services/userService");
+import express from 'express'
+import UserService from '../services/userService'
 
-exports.addUser = async (req, res) => {
+export const addUser = async (req: express.Request, res: express.Response) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
@@ -15,7 +16,7 @@ exports.addUser = async (req, res) => {
   }
 };
 
-exports.getUser = async (req, res) => {
+export const getUser = async (req: express.Request, res: express.Response) => {
   const { id } = req.params;
 
   try {

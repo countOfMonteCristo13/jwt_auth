@@ -1,10 +1,12 @@
-const express = require("express");
-const cors = require("cors");
-const { db } = require("./db/db");
-const routes = require("./routes/index");
-const app = express();
+import express from 'express'
+import cors from 'cors'
+import db from './db/db'
+import router from './routes/index'
+import dotenv from 'dotenv'
 
-require("dotenv").config();
+dotenv.config();
+
+const app = express();
 
 const PORT = process.env.PORT || 3001;
 
@@ -16,7 +18,7 @@ const corsOptions = {
 
 app.use(express.json());
 app.use(cors(corsOptions));
-app.use("/api", routes);
+app.use("/api", router);
 
 app.listen(PORT, () => {
   db();

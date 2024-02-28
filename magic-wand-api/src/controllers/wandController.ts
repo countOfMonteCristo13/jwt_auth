@@ -1,8 +1,9 @@
-const mongoose = require("mongoose");
+import express from 'express'
+import mongoose from 'mongoose';
+import WandService from '../services/wandService';
 
-const WandService = require("../services/wandService");
 
-exports.addWand = async (req, res) => {
+export const addWand = async (req: express.Request, res: express.Response) => {
   const { flexibility, owner, length, wood } = req.body;
 
   if (!flexibility || !owner || !length || !wood) {
@@ -27,7 +28,7 @@ exports.addWand = async (req, res) => {
   }
 };
 
-exports.getWands = async (req, res) => {
+export const getWands = async (req: express.Request, res: express.Response) => {
   try {
     const wands = await WandService.getWands();
 
@@ -41,7 +42,7 @@ exports.getWands = async (req, res) => {
   }
 };
 
-exports.getWand = async (req, res) => {
+export const getWand = async (req: express.Request, res: express.Response) => {
   const { id } = req.params;
   try {
     const wand = await WandService.getWand(id);
@@ -57,6 +58,6 @@ exports.getWand = async (req, res) => {
   }
 };
 
-exports.protected = async (req, res) => {
-  res.json({ message: "Ovo je zaštićeni resurs", user: req.user });
+export const protecteds = async (req: express.Request, res: express.Response) => {
+  res.json({ message: "Ovo je zaštićeni resurs", user: req.body });
 };

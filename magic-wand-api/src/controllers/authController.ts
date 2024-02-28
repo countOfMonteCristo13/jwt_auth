@@ -1,9 +1,10 @@
-// const UserModel = require("../models/UserModel");
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
-const UserService = require("../services/userService");
+import express from 'express'
+import dotenv from 'dotenv'
+import jwt from 'jsonwebtoken'
+import UserService from '../services/userService';
+dotenv.config();
 
-exports.handleLogin = async (req, res) => {
+export const handleLogin = async (req: express.Request, res: express.Response) => {
   const { username, password } = req.body;
 
   const user = await UserService.getUser(username, password);
