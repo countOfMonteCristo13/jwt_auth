@@ -1,14 +1,18 @@
-import express  from 'express';
-import dotenv from 'dotenv'
-import jwt, { JwtPayload } from 'jsonwebtoken'
+import express from "express";
+import dotenv from "dotenv";
+import jwt, { JwtPayload } from "jsonwebtoken";
 const SECRET_KEY = process.env.ACCESS_TOKEN_SECRET;
 dotenv.config();
 
-export interface UserRequest extends express.Request{
-  user: string | JwtPayload
+export interface UserRequest extends express.Request {
+  user: JwtPayload | string;
 }
 
-export const authenticateToken = async (req: UserRequest, res: express.Response, next: express.NextFunction) => {
+export const authenticateToken = async (
+  req: UserRequest,
+  res: express.Response,
+  next: express.NextFunction
+) => {
   const authHeader = req.headers["authorization"];
   // console.log(req.headers);
   const token = authHeader && authHeader.split(" ")[1];
